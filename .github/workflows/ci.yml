@@ -34,7 +34,6 @@ jobs:
           SNOWFLAKE_DATABASE: OLIST_DB
           SNOWFLAKE_SCHEMA: DEV
         run: |
-          cd olist_dbt
           dbt debug
           dbt run
           dbt test
