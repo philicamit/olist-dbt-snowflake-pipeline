@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: stg_orders
+    description: "Staged orders data from Olist marketplace"
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+        tests:
+          - not_null
+
+  - name: stg_customers
+    description: "Staged customer profiles"
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_payments
+    description: "Staged payment records per order"
+    columns:
+      - name: order_id
+        tests:
+          - not_null
+      - name: payment_type
+        tests:
+          - not_null

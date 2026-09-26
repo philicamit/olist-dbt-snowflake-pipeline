@@ -1,0 +1,3 @@
+# Olist E-Commerce Analytics Data Pipeline (dbt Core + Snowflake)
+
+A production-grade, end-to-end ELT data pipeline built using **dbt Core**, **Snowflake Data Warehouse**, and **VS Code**. This project transforms raw Brazilian e-commerce data from Azure Blob Storage into a highly optimized, business-ready **Star Schema** (Staging & Marts layers). It incorporates automated schema testing, interactive lineage documentation, Slowly Changing Dimensions (SCD Type 2) tracking, and CI/CD automation.
