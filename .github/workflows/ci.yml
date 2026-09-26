@@ -45,6 +45,6 @@ jobs:
 
       - name: Run dbt Commands
         run: |
-          dbt debug --project-dir .
-          dbt run --project-dir .
-          dbt test --project-dir .
+          dbt debug
+          dbt run
+          dbt test
