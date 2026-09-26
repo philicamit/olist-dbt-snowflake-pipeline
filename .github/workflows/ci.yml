@@ -24,15 +24,26 @@ jobs:
           python -m pip install --upgrade pip
           pip install dbt-snowflake
 
+      - name: Setup dbt profiles.yml
+        run: |
+          mkdir -p ~/.dbt
+          cat < ~/.dbt/profiles.yml
+          olist_dbt:
+            outputs:
+              dev:
+                type: snowflake
+                account: ${{ secrets.SNOWFLAKE_ACCOUNT }}
+                user: ${{ secrets.SNOWFLAKE_USER }}
+                password: ${{ secrets.SNOWFLAKE_PASSWORD }}
+                role: ${{ secrets.SNOWFLAKE_ROLE }}
+                warehouse: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
+                database: OLIST_DB
+                schema: DEV
+                threads: 4
+            target: dev
+          EOF
+
       - name: Run dbt Test & Build
-        env:
-          SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
-          SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
-          SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-          SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
-          SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
-          SNOWFLAKE_DATABASE: OLIST_DB
-          SNOWFLAKE_SCHEMA: DEV
         run: |
           dbt debug
           dbt run
